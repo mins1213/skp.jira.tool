@@ -11,4 +11,9 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+	@GetMapping("/member/loginProcess")
+	public String loginProcess() {
+		return "/member/login";
+	}
+	
 }
