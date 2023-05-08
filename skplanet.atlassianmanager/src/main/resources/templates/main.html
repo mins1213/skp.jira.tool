@@ -1,0 +1,26 @@
+<!--메인 페이지-->
+<!--main.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form method="post" action="/authUser">
+    <div class="container">
+        <h1>SK PLANET WIKI/JIRA 권한신청</h1>
+        <div class="form-group">
+            <label for="inputEmail4">사번</label>
+            <input type="text" class="form-control" id="inputEmail4" name="id" placeholder="사용자 아이디">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword4">password</label>
+            <input type="password" class="form-control" id="inputPassword4" name="passWord" placeholder="사용자 비밀번호">
+        </div>
+        <button type="submit" class="btn btn-primary">확인</button>
+    </div>
+</form>
+</body>
+</html>
