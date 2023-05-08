@@ -1,12 +1,13 @@
 package com.skplanet.atlassianmanager.service;
 
-import com.skplanet.atlassianmanager.model.User;
-
 import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+
+import com.skplanet.atlassianmanager.vo.UserVo;
+
 import org.springframework.boot.devtools.remote.client.HttpHeaderInterceptor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
@@ -15,11 +16,13 @@ import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 @Service
 public class UserService {
 
-	private final String CROWD_APP_ID  = "dev-user";
-    private final String CROWD_APP_PWD = "dev-user";
+	private final String CROWD_APP_ID  = "skpjira";
+    private final String CROWD_APP_PWD = "jirapassword";
     
-	public void authUser(User user) {
-		String crowdUrl = "http://crowddev.skplanet.com:8080/crowd/rest/usermanagement/latest/authentication?username=" + user.getId();
+	public void authUser(UserVo user) throws Exception{
+		System.out.println(user.toString());
+		
+		String crowdUrl = "http://crowd.skplanet.com:8095/crowd/rest/usermanagement/latest/authentication?username=" + user.getId();
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(CROWD_APP_ID, CROWD_APP_PWD));
@@ -44,7 +47,7 @@ public class UserService {
             }
         });
 
-        ResponseEntity<Object> res = restTemplate.postForEntity(crowdUrl, CROWD_APP_PWD, Object.class);
+        ResponseEntity<Object> res = restTemplate.postForEntity(crowdUrl, user.getPassWord(), Object.class);
         System.out.println("getStatusCode() : " + res.getStatusCode());
         System.out.println("getBody() : " + res.getBody());
 
